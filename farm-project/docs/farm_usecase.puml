@@ -1,0 +1,38 @@
+@startuml
+title Система управления фермерским хозяйством
+left to right direction
+rectangle "Фермерское хозяйство" {
+  usecase "Авторизация" as UC1
+  usecase "Управление животными" as UC2
+  usecase "Учет продукции" as UC3
+  usecase "Контроль здоровья" as UC4
+  usecase "Финансовые операции" as UC5
+  usecase "Генерация отчетов" as UC6
+  usecase "Проверка ролей" as UC7
+  usecase "Экспорт в Excel" as UC8
+  usecase "Планирование кормления" as UC9
+}
+
+actor Фермер as farmer
+actor Ветеринар as vet
+farmer <|-- vet
+actor Бухгалтер as accountant
+farmer <|-- accountant
+actor Администратор as admin
+
+farmer --> UC1
+farmer --> UC2
+farmer --> UC3
+farmer --> UC9
+vet --> UC1
+vet --> UC4
+accountant --> UC1
+accountant --> UC5
+accountant --> UC6
+admin --> UC1
+admin --> UC2
+admin --> UC5
+UC2 ..> UC7 : <<include>>
+UC4 ..> UC7 : <<include>>
+UC6 ..> UC8 : <<include>>
+@enduml
