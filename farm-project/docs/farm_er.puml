@@ -1,0 +1,45 @@
+@startuml
+title ER-диаграмма: Фермерское хозяйство
+
+entity "Животные" as animals {
+  * id : SERIAL
+    name : VARCHAR(100)
+    species : VARCHAR(50)
+    birth_date : DATE
+    pen_id : INTEGER (FK)
+}
+
+entity "Загоны" as pens {
+  * id : SERIAL
+    name : VARCHAR(50)
+    capacity : INTEGER
+}
+
+entity "Продукция" as products {
+  * id : SERIAL
+    type : VARCHAR(50)
+    quantity : DECIMAL(10,2)
+    date : DATE
+    animal_id : INTEGER (FK)
+}
+
+entity "Осмотры" as checkups {
+  * id : SERIAL
+    animal_id : INTEGER (FK)
+    vet_name : VARCHAR(100)
+    diagnosis : TEXT
+    checkup_date : DATE
+}
+
+entity "Финансы" as finances {
+  * id : SERIAL
+    type : VARCHAR(20)
+    amount : DECIMAL(10,2)
+    category : VARCHAR(50)
+    date : DATE
+}
+
+pens ||--|{ animals : содержит
+animals ||--|{ products : дает
+animals ||--|{ checkups : проходит
+@enduml

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фермерское хозяйство - Система учета</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐄 Фермерское хозяйство</h1>
+            <p>Полная система учета животных, продукции, сотрудников и финансов</p>
+        </header>
+
+        <!-- 5 ВКЛАДОК -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="animals">🐕 Животные</button>
+            <button class="tab-btn" data-tab="pens">🏠 Загоны</button>
+            <button class="tab-btn" data-tab="products">🥛 Продукция</button>
+            <button class="tab-btn" data-tab="employees">👨‍🌾 Сотрудники</button>
+            <button class="tab-btn" data-tab="finances">💰 Финансы</button>
+        </div>
+
+        <!-- Вкладка 1: Животные -->
+        <div id="animalsTab" class="tab-content active">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="showAddForm('animals')">➕ Добавить животное</button>
+                <button class="btn btn-secondary" onclick="loadData('animals')">🔄 Обновить</button>
+            </div>
+            <div class="table-container">
+                <table id="animalsTable" class="data-table">
+                    <thead>
+                        <tr><th>ID</th><th>Кличка</th><th>Вид</th><th>Порода</th><th>Дата рождения</th><th>Вес(кг)</th><th>Загон</th><th>Действия</th></tr>
+                    </thead>
+                    <tbody id="animalsBody"><tr><td colspan="8" class="loading">Загрузка...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Вкладка 2: Загоны -->
+        <div id="pensTab" class="tab-content">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="showAddForm('pens')">➕ Добавить загон</button>
+                <button class="btn btn-secondary" onclick="loadData('pens')">🔄 Обновить</button>
+            </div>
+            <div class="table-container">
+                <table id="pensTable" class="data-table">
+                    <thead><tr><th>ID</th><th>Название</th><th>Площадь</th><th>Вместимость</th><th>Тип животных</th><th>Статус</th><th>Действия</th></tr></thead>
+                    <tbody id="pensBody"><tr><td colspan="7" class="loading">Загрузка...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Вкладка 3: Продукция -->
+        <div id="productsTab" class="tab-content">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="showAddForm('products')">➕ Добавить продукцию</button>
+                <button class="btn btn-secondary" onclick="loadData('products')">🔄 Обновить</button>
+            </div>
+            <div class="table-container">
+                <table id="productsTable" class="data-table">
+                    <thead><tr><th>ID</th><th>Название</th><th>Тип</th><th>Количество</th><th>Ед.изм</th><th>Дата сбора</th><th>Цена</th><th>Действия</th></tr></thead>
+                    <tbody id="productsBody"><tr><td colspan="8" class="loading">Загрузка...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Вкладка 4: Сотрудники -->
+        <div id="employeesTab" class="tab-content">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="showAddForm('employees')">➕ Добавить сотрудника</button>
+                <button class="btn btn-secondary" onclick="loadData('employees')">🔄 Обновить</button>
+            </div>
+            <div class="table-container">
+                <table id="employeesTable" class="data-table">
+                    <thead><tr><th>ID</th><th>ФИО</th><th>Должность</th><th>Телефон</th><th>Дата приема</th><th>Зарплата</th><th>Email</th><th>Действия</th></tr></thead>
+                    <tbody id="employeesBody"><tr><td colspan="8" class="loading">Загрузка...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Вкладка 5: Финансы -->
+        <div id="financesTab" class="tab-content">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="showAddForm('finances')">➕ Добавить операцию</button>
+                <button class="btn btn-secondary" onclick="loadData('finances')">🔄 Обновить</button>
+            </div>
+            <div class="table-container">
+                <table id="financesTable" class="data-table">
+                    <thead><tr><th>ID</th><th>Тип</th><th>Сумма</th><th>Категория</th><th>Описание</th><th>Дата</th><th>Метод оплаты</th><th>Действия</th></tr></thead>
+                    <tbody id="financesBody"><tr><td colspan="8" class="loading">Загрузка...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Добавить</h2>
+            <form id="dynamicForm">
+                <div id="formFields"></div>
+                <div style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-success">💾 Сохранить</button>
+                    <button type="button" class="btn btn-danger" onclick="closeModal()">❌ Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
